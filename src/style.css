@@ -39,7 +39,8 @@ section {
           overflow: hidden;
           text-overflow: ellipsis; }
       .books .bookShelf .book .thumbnail .bookImage {
-        min-height: 250px; }
+        min-height: 250px;
+        padding: 0 15px; }
         .books .bookShelf .book .thumbnail .bookImage img {
           margin-left: auto;
           margin-right: auto;
