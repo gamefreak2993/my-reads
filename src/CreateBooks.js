@@ -23,6 +23,7 @@ class CreateBooks extends Component {
               title={ shelf }
               books={ books }
               bookShelf={ shelf }
+              bookShelves={ bookShelves }
             />
           ) ) }
         </div>
