@@ -64,7 +64,6 @@ class CreateBooks extends Component {
                           read: shelf === 'read' ? state.shelves.read.concat( book ) : state.shelves.read
                         }
                       } ) );
-                      console.log( shelf === 'currentlyReading' ? book : 'nothing' );
                     } );
                   } }
                 />
@@ -97,7 +96,6 @@ class CreateBooks extends Component {
                           read: shelf === 'read' ? state.shelves.read.concat( book ) : state.shelves.read
                         }
                       } ) );
-                      console.log( shelf === 'wantToRead' ? book : 'nothing' );
                     } );
                   } }
                 />
@@ -130,7 +128,6 @@ class CreateBooks extends Component {
                           read: state.shelves.read.filter( b => b.id !== book.id )
                         }
                       } ) );
-                      console.log( shelf === 'read' ? book : 'nothing' );
                     } );
                   } }
                 />
