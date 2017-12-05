@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Book extends Component {
   handleChange = ( event ) => {
     const newShelf = event.target.value;
-    this.props.onChangeShelf( this.props.currentBook, newShelf, this.props.currentBook.id );
+    this.props.onChangeShelf( this.props.currentBook, newShelf );
   }
 
   render () {
