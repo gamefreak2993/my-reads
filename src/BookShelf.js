@@ -4,17 +4,18 @@ import * as BooksAPI from './utils/BooksAPI';
 
 class BookShelf extends Component {
   state = {
-      currentBookShelf: this.props.bookShelf
+    books: this.props.books
   }
 
   render () {
-    const { title, books, bookShelf, bookShelves } = this.props;
+    const { title, bookShelf, bookShelves } = this.props;
+    let { books } = this.state;
 
     return (
       <div className={ `bookShelf ${ bookShelf }` }>
         <h4 className="bookShelfTitle">{ title.replace(/([A-Z])/g, ' $1') }</h4>
         <div className="row">
-          { books.filter( ( book ) => book.shelf === bookShelf ).map( ( book ) => (
+          { books.filter( book => book.shelf === bookShelf ).map( ( book ) => (
             <Book
               key={ book.id }
               bookTitle={ book.title }
@@ -26,15 +27,16 @@ class BookShelf extends Component {
               bookShelf={ bookShelf }
               bookShelves={ bookShelves }
               currentBook={ book }
-              onChangeShelf={ ( book, shelf ) => {
-                BooksAPI.update( book, shelf ).then( /*( book, shelf ) => {
-                  this.setState( () => ( {
-
+              onChangeShelf={ ( book, shelf, bookId ) => {
+                BooksAPI.update( book, shelf ).then( bookId => {
+                  this.setState( state => ( {
+                    books: state.books.map( book => book ).filter( book => book.id === bookId )
                   } ) )
-                }*/ );
+                } );
               } }
             />
           ) ) }
+          { console.log( this.state.books ) }
         </div>
       </div>
     )
