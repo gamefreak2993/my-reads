@@ -33,8 +33,16 @@ class Book extends Component {
           </div>
           <div className="overlay container">
             <div className="description row">
-              <p className="col">{ bookDescription.truncate( 200 ) }</p>
+              <p className="col">{ bookDescription.truncate( 300 ) }</p>
             </div>
+
+            <select onChange={ this.handleChange }>
+              <option value={ bookShelf }>{ bookShelf.replace( /([A-Z])/g, ' $1' ).toUpperCase() }</option>
+              { bookShelves.filter( ( shelf ) => shelf !== bookShelf ).map( ( shelf ) => (
+                <option key={ shelf } value={ shelf }>{ shelf.replace( /([A-Z])/g, ' $1' ).toUpperCase() }</option>
+              ) ) }
+            </select>
+
             <div className="extra row">
               <ul className="bookAuthors col">
                 { bookAuthors.map( ( author ) => (
@@ -44,13 +52,6 @@ class Book extends Component {
             </div>
           </div>
         </div>
-
-        <select onChange={ this.handleChange }>
-          <option value={ bookShelf }>{ bookShelf }</option>
-          { bookShelves.filter( ( shelf ) => shelf !== bookShelf ).map( ( shelf ) => (
-            <option key={ shelf } value={ shelf }>{ shelf }</option>
-          ) ) }
-        </select>
       </div>
     )
   }
