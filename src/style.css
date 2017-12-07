@@ -105,3 +105,12 @@ section {
           margin: 0;
           font-size: 0.6em;
           text-align: right; }
+  .books .bookShelf.wantToRead .book {
+    background-color: #FBE9E7; }
+  .books .bookShelf.read .book {
+    background-color: #ECEFF1; }
+    .books .bookShelf.read .book .thumbnail .bookImage img {
+      -webkit-filter: grayscale(100%);
+      /* Safari 6.0 - 9.0 */
+      filter: grayscale(100%);
+      box-shadow: 0 0 5px rgba(15, 20, 22, 0.5); }
