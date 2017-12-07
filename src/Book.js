@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 class Book extends Component {
   static propTypes = {
+    bookShelves: PropTypes.array.isRequired,
     bookOnShelf: PropTypes.object.isRequired,
     onChangeShelf: PropTypes.func.isRequired
   }
@@ -13,8 +14,7 @@ class Book extends Component {
   }
 
   render() {
-    let {bookOnShelf} = this.props;
-    const bookShelves = ['currentlyReading', 'wantToRead', 'read'];
+    let {bookShelves, bookOnShelf} = this.props;
 
     // Truncate for bookDescription
     String.prototype.truncate = String.prototype.truncate || function(n) {

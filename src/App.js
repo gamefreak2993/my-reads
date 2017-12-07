@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div className="myReadsApp">
         <Header/>
-          <Route exact="exact" path='/' render={_ => (<CreateBooks/>)}/>
+          <Route exact path='/' render={_ => (<CreateBooks/>)}/>
         <Footer/>
       </div>
     );
