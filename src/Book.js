@@ -1,51 +1,59 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Book extends Component {
+  static propTypes = {
+    bookOnShelf: PropTypes.object.isRequired,
+    onChangeShelf: PropTypes.func.isRequired
+  }
+
   handleChange = ( event ) => {
     const newShelf = event.target.value;
-    this.props.onChangeShelf( this.props.currentBook, newShelf );
+    this.props.onChangeShelf( this.props.bookOnShelf, newShelf );
   }
 
   render () {
-    const { bookTitle, bookImageLinksThumbnail, bookPublisher, bookPublishedDate, bookDescription, bookAuthors, bookShelf, bookShelves } = this.props;
+    let { bookOnShelf } = this.props;
+    const bookShelves = [ 'currentlyReading', 'wantToRead', 'read' ];
+
     // Truncate for bookDescription
     String.prototype.truncate = String.prototype.truncate ||
-      function(n){
+      function ( n ) {
           return (this.length > n) ? this.substr(0, n-1) + '...' : this;
       };
 
-    return(
+    return (
       <div className="col-12 col-sm-6 col-md-4 col-lg-3">
         <div className="book">
           <div className="thumbnail container">
             <div className="header row">
-              <h6 className="bookTitle col">{ bookTitle }</h6>
+              <h6 className="bookTitle col">{ bookOnShelf.title }</h6>
             </div>
 
             <div className="bookImage d-flex">
-              <img className="align-self-center" src={ bookImageLinksThumbnail } title={ bookTitle } alt={ bookTitle } />
+              <img className="align-self-center" src={ bookOnShelf.imageLinks.thumbnail } title={ bookOnShelf.title } alt={ bookOnShelf.title } />
             </div>
 
             <div className="footer row">
-              <div className="publisher col">{ bookPublisher }</div>
-              <div className="publishedDate col-auto">{ bookPublishedDate.replace(/-/g, '/') }</div>
+              <div className="publisher col">{ bookOnShelf.publisher }</div>
+              <div className="publishedDate col-auto">{ bookOnShelf.publishedDate.replace(/-/g, '/') }</div>
             </div>
           </div>
           <div className="overlay container">
             <div className="description row">
-              <p className="col">{ bookDescription.truncate( 300 ) }</p>
+              <p className="col">{ bookOnShelf.description.truncate( 300 ) }</p>
             </div>
 
             <select onChange={ this.handleChange }>
-              <option value={ bookShelf }>{ bookShelf.replace( /([A-Z])/g, ' $1' ).toUpperCase() }</option>
-              { bookShelves.filter( ( shelf ) => shelf !== bookShelf ).map( ( shelf ) => (
+              <option value={ bookOnShelf.shelf }>{ bookOnShelf.shelf.replace( /([A-Z])/g, ' $1' ).toUpperCase() }</option>
+              { bookShelves.filter( shelf => shelf !== bookOnShelf.shelf ).map( shelf => (
                 <option key={ shelf } value={ shelf }>{ shelf.replace( /([A-Z])/g, ' $1' ).toUpperCase() }</option>
               ) ) }
             </select>
 
             <div className="extra row">
               <ul className="bookAuthors col">
-                { bookAuthors.map( ( author ) => (
+                { bookOnShelf.authors.map( ( author ) => (
                   <li key={ author }>{ author }</li>
                 ) ) }
               </ul>
