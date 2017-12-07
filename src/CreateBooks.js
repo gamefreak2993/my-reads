@@ -9,9 +9,7 @@ class CreateBooks extends Component {
 
   componentDidMount () {
     BooksAPI.getAll().then( ( books ) => {
-      this.setState( _ => ( {
-        books: books
-      } ) );
+      this.setState( { books: books } );
     } );
   }
 

@@ -22,14 +22,16 @@ body {
   }
 }
 // Core
+
 section {
   padding: 50px 0;
 }
 // Books
+
 .books {
   .bookShelf {
     margin-bottom: 100px;
-    box-shadow: 0px 15px 15px -15px rgba( 15, 20, 22, 0.5 );
+    box-shadow: 0 15px 15px -15px rgba(15, 20, 22, 0.5);
 
     .bookShelfTitle {
       margin-bottom: 15px;
@@ -37,7 +39,7 @@ section {
 
     .book {
       background-color: white;
-      box-shadow: 0px 0px 5px rgba( 15, 20, 22, 0.25 );
+      box-shadow: 0 0 5px rgba(15, 20, 22, 0.25);
       border-radius: 5px;
       margin-bottom: 30px;
       position: relative;
@@ -45,7 +47,7 @@ section {
       transition: all 0.25s ease-in;
 
       &:hover {
-        box-shadow: 0px 0px 25px rgba( 15, 20, 22, 0.75 );
+        box-shadow: 0 0 25px rgba(15, 20, 22, 0.75);
         -ms-transform: translate(0, -5px); /* IE 9 */
         -webkit-transform: translate(0, -5px); /* Safari */
         transform: translate(0, -5px);
@@ -53,7 +55,7 @@ section {
         .thumbnail {
           .bookImage {
             img {
-            box-shadow: 0px 0px 5px rgba( 15, 20, 22, 0.75 );
+              box-shadow: 0 0 5px rgba(15, 20, 22, 0.75);
             }
           }
         }
@@ -83,7 +85,7 @@ section {
           img {
             margin-left: auto;
             margin-right: auto;
-            box-shadow: 0px 0px 25px rgba( 15, 20, 22, 0.5 );
+            box-shadow: 0 0 25px rgba(15, 20, 22, 0.5);
             border-radius: 5px;
             transition: all 0.25s ease-in;
           }
@@ -116,7 +118,7 @@ section {
         bottom: 0;
         left: 0;
         opacity: 0;
-        background-color: rgba( 15, 20, 22, 0.95 );
+        background-color: rgba(15, 20, 22, 0.95);
         transition: all 0.25s ease-in;
         height: 100%;
         color: white;
