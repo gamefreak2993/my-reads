@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import * as BooksAPI from './utils/BooksAPI';
 import PropTypes from 'prop-types';
 
 const bookStyle = {
