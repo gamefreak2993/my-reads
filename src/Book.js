@@ -1,7 +1,16 @@
 import React, {Component} from 'react';
+import * as BooksAPI from './utils/BooksAPI';
 import PropTypes from 'prop-types';
 
+const bookStyle = {
+  transition: 'all 0.25s ease-in'
+}
+
 class Book extends Component {
+  state = {
+    bookOpacity: 1
+  }
+
   static propTypes = {
     bookShelves: PropTypes.array.isRequired,
     bookOnShelf: PropTypes.object.isRequired,
@@ -11,10 +20,15 @@ class Book extends Component {
   handleChange = (event) => {
     const newShelf = event.target.value;
     this.props.onChangeShelf(this.props.bookOnShelf, newShelf);
+
+    this.setState({
+      bookOpacity: 0
+    });
   }
 
   render() {
     let {bookShelves, bookOnShelf} = this.props;
+    let {bookOpacity} = this.state;
 
     // Truncate for bookDescription
     String.prototype.truncate = String.prototype.truncate || function(n) {
@@ -24,7 +38,7 @@ class Book extends Component {
     };
 
     return (
-      <div className="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div className="col-12 col-sm-6 col-md-4 col-lg-3" style={{...bookStyle, opacity: bookOpacity}}>
         <div className="book">
           <div className="thumbnail container">
             <div className="header row">

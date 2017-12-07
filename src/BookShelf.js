@@ -12,19 +12,19 @@ class BookShelf extends Component {
   }
 
   render() {
-    let {bookShelves, booksOnShelf, shelfTitle, shelfName, onChangeBookShelf, booksVisibility} = this.props;
+    let {bookShelves, booksOnShelf, shelfTitle, shelfName, onChangeBookShelf} = this.props;
 
     return (
       <div className={`bookShelf ${shelfName}`}>
         <h4 className="bookShelfTitle">{shelfTitle}</h4>
         <div className="row">
           {booksOnShelf.map(book => (
-            <Book
-              key={book.id}
-              bookShelves={bookShelves}
-              bookOnShelf={book}
-              onChangeShelf={onChangeBookShelf}
-            />
+              <Book
+                key={book.id}
+                bookShelves={bookShelves}
+                bookOnShelf={book}
+                onChangeShelf={onChangeBookShelf}
+              />
           ))}
         </div>
       </div>

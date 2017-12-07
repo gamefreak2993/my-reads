@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
-import ReactTransitionGroup from 'react-transition-group';
 import * as BooksAPI from './utils/BooksAPI';
 import BookShelf from './BookShelf'
+
+const bookShelfStyles = {
+  transition: 'all 0.75s ease-in',
+  position: 'relative'
+}
 
 class CreateBooks extends Component {
   state = {
@@ -13,14 +17,24 @@ class CreateBooks extends Component {
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      this.setState({books: books, bookShelfOpacity: 1, bookShelfScale: 1, bookShelfPoisitionTop: 0});
+      this.setState({
+        books: books,
+        bookShelfOpacity: 1,
+        bookShelfScale: 1,
+        bookShelfPoisitionTop: 0
+      });
     });
   }
 
   changeShelf = (book, shelf) => {
     BooksAPI.update(book, shelf).then(_ => {
       BooksAPI.getAll().then(books => {
-        this.setState({books: books, bookShelfOpacity: 1, bookShelfScale: 1, bookShelfPoisitionTop: 0});
+        this.setState({
+          books: books,
+          bookShelfOpacity: 1,
+          bookShelfScale: 1,
+          bookShelfPoisitionTop: 0
+        });
       })
     });
   }
@@ -34,7 +48,7 @@ class CreateBooks extends Component {
       <section className="books">
         <div className="container">
           {bookShelves.map((bookShelf, index) => (
-            <div style={{transition: 'all 0.75s ease-in', position: 'relative', top: `${bookShelfPoisitionTop}px`, opacity: bookShelfOpacity, transform: `scale(${bookShelfScale})`, 'transition-delay': `${index/4}s`}}>
+            <div key={bookShelf} style={{...bookShelfStyles, top: `${bookShelfPoisitionTop}px`, opacity: bookShelfOpacity, transform: `scale(${bookShelfScale})`, transitionDelay: `${index/4}s`}}>
               <BookShelf
                 bookShelves={bookShelves}
                 booksOnShelf={books.filter(book => book.shelf === bookShelf)}
