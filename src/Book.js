@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-const bookStyle = {
-  transition: 'all 0.25s ease-in'
-}
-
 class Book extends Component {
   state = {
     bookOpacity: 1
@@ -26,8 +22,8 @@ class Book extends Component {
   }
 
   render() {
-    let {bookShelves, bookOnShelf} = this.props;
-    let {bookOpacity} = this.state;
+    const {bookShelves, bookOnShelf} = this.props;
+    const {bookOpacity} = this.state;
 
     // Truncate for bookDescription
     String.prototype.truncate = String.prototype.truncate || function(n) {
@@ -37,7 +33,7 @@ class Book extends Component {
     };
 
     return (
-      <div className="col-12 col-sm-6 col-md-4 col-lg-3" style={{...bookStyle, opacity: bookOpacity}}>
+      <div className="col-12 col-sm-6 col-md-4 col-lg-3 bookContainer" style={{opacity: bookOpacity}}>
         <div className="book">
           <div className="thumbnail container">
             <div className="header row">

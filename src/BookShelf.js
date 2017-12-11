@@ -12,7 +12,7 @@ class BookShelf extends Component {
   }
 
   render() {
-    let {bookShelves, booksOnShelf, shelfTitle, shelfName, onChangeBookShelf} = this.props;
+    const {bookShelves, booksOnShelf, shelfTitle, shelfName, onChangeBookShelf} = this.props;
 
     return (
       <div className={`bookShelf ${shelfName}`}>

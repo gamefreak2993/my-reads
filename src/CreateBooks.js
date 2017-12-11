@@ -1,60 +1,29 @@
 import React, {Component} from 'react';
-import * as BooksAPI from './utils/BooksAPI';
-import BookShelf from './BookShelf'
-
-const bookShelfStyles = {
-  transition: 'all 0.75s ease-in',
-  position: 'relative'
-}
+import PropTypes from 'prop-types';
+import BookShelf from './BookShelf';
 
 class CreateBooks extends Component {
-  state = {
-    books: [],
-    bookShelfOpacity: 0,
-    bookShelfScale: 0.95,
-    bookShelfPoisitionTop: 25
-  }
-
-  componentDidMount() {
-    BooksAPI.getAll().then((books) => {
-      this.setState({
-        books: books,
-        bookShelfOpacity: 1,
-        bookShelfScale: 1,
-        bookShelfPoisitionTop: 0
-      });
-    });
-  }
-
-  changeShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf).then(_ => {
-      BooksAPI.getAll().then(books => {
-        this.setState({
-          books: books,
-          bookShelfOpacity: 1,
-          bookShelfScale: 1,
-          bookShelfPoisitionTop: 0
-        });
-      })
-    });
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    styles: PropTypes.object.isRequired,
+    bookShelves: PropTypes.array.isRequired,
+    onChangeBookShelf: PropTypes.func.isRequired
   }
 
   render() {
-    let {books, bookShelfOpacity, bookShelfScale, bookShelfPoisitionTop} = this.state;
-
-    const bookShelves = ['currentlyReading', 'wantToRead', 'read'];
+    const {books, styles, bookShelves, onChangeBookShelf} = this.props;
 
     return (
       <section className="books">
         <div className="container">
           {bookShelves.map((bookShelf, index) => (
-            <div key={bookShelf} style={{...bookShelfStyles, top: `${bookShelfPoisitionTop}px`, opacity: bookShelfOpacity, transform: `scale(${bookShelfScale})`, transitionDelay: `${index/4}s`}}>
+            <div className="bookShelfContainer" key={bookShelf} style={{opacity: styles.bookShelfOpacity, top: styles.bookShelfPositionTop, transitionDelay: `${index/2}s`}}>
               <BookShelf
                 bookShelves={bookShelves}
                 booksOnShelf={books.filter(book => book.shelf === bookShelf)}
                 shelfTitle={bookShelf.replace(/([A-Z])/g, ' $1').toUpperCase()}
                 shelfName={bookShelf}
-                onChangeBookShelf={(book, shelf) => this.changeShelf(book, shelf)}
+                onChangeBookShelf={onChangeBookShelf}
               />
             </div>
           ))}

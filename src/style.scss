@@ -21,157 +21,222 @@ body {
     color: #37474F;
   }
 }
-// Core
+// Header
+header {
+  padding: 10px 0;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  box-shadow: 0 5px 5px -5px rgba(15, 20, 22, 0.25);
 
-section {
-  padding: 50px 0;
-}
-// Books
-
-.books {
-  .bookShelf {
-    margin-bottom: 100px;
-    box-shadow: 0 15px 15px -15px rgba(15, 20, 22, 0.5);
-
-    .bookShelfTitle {
-      margin-bottom: 15px;
-    }
-
-    .book {
-      background-color: white;
-      box-shadow: 0 0 5px rgba(15, 20, 22, 0.25);
-      border-radius: 5px;
-      margin-bottom: 30px;
-      position: relative;
-      overflow: hidden;
+  .logo {
+    a {
+      display: block;
       transition: all 0.25s ease-in;
 
       &:hover {
-        box-shadow: 0 0 25px rgba(15, 20, 22, 0.75);
-        -ms-transform: translate(0, -5px);
-        /* IE 9 */
-        -webkit-transform: translate(0, -5px);
-        /* Safari */
-        transform: translate(0, -5px);
-
-        .thumbnail {
-          .bookImage {
-            img {
-              box-shadow: 0 0 5px rgba(15, 20, 22, 0.75);
-            }
-          }
-        }
-
-        .overlay {
-          opacity: 1;
-        }
+        text-decoration: none;
+        opacity: 0.75;
       }
 
-      .thumbnail {
-        padding-top: 15px;
-        padding-bottom: 15px;
-
-        .header {
-          .bookTitle {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            margin-bottom: 0;
-          }
-        }
-
-        .bookImage {
-          min-height: 250px;
-          padding: 0 15px;
-
-          img {
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 0 25px rgba(15, 20, 22, 0.5);
-            border-radius: 5px;
-            transition: all 0.25s ease-in;
-          }
-        }
-
-        .footer {
-          font-size: 0.8em;
-          line-height: 1.2em;
-
-          .publisher {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            font-weight: 700;
-          }
-
-          .publishedDate {
-            font-size: 0.6em;
-            color: #90A4AE;
-          }
-        }
+      h2 {
+        margin: 0;
       }
+    }
 
-      .overlay {
-        padding-top: 15px;
-        padding-bottom: 15px;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        opacity: 0;
-        background-color: rgba(15, 20, 22, 0.95);
-        transition: all 0.25s ease-in;
-        height: 100%;
-        color: white;
+  }
 
-        .description {
+  .nav {
+    a {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      transition: all 0.25s ease-in;
+    }
+  }
+}
+// Core
+section {
+  padding: 50px 0;
+}
+// Forms
+.searchBooks {
+  transition: all 0.25s ease-in;
+}
+// Books
+.books {
+  .bookShelfContainer {
+    position: relative;
+    transition: all 0.75s ease-in;
+
+    .bookShelf {
+      margin-bottom: 100px;
+      box-shadow: 0 15px 15px -15px rgba(15, 20, 22, 0.5);
+
+      .row:empty {
+        &::after {
+          content: "No books found on this shelf!";
+          width: 100%;
+          padding: 30px;
+          background-color: white;
+          box-shadow: 0 0 5px rgba(15, 20, 22, 0.25);
+          border-radius: 5px;
+          margin: 0 15px;
+          margin-bottom: 30px;
+          color: #78909C;
+          text-align: center;
           font-size: 0.8em;
           font-weight: 500;
         }
+      }
 
-        select {
-          width: 100%;
+      .bookShelfTitle {
+        margin-bottom: 15px;
+      }
+
+      .bookContainer {
+        transition: all 0.25s ease-in;
+
+        .book {
+          background-color: white;
+          box-shadow: 0 0 5px rgba(15, 20, 22, 0.25);
           border-radius: 5px;
-          border: none;
-          padding: 0.5em 0.75em;
-          color: #37474F;
-          font-size: 0.6em;
-          font-weight: 700;
-        }
+          margin-bottom: 30px;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.25s ease-in;
 
-        .extra {
-          position: absolute;
-          bottom: 15px;
-          width: 100%;
+          &:hover {
+            box-shadow: 0 0 25px rgba(15, 20, 22, 0.75);
+            -ms-transform: translate(0, -5px);
+            /* IE 9 */
+            -webkit-transform: translate(0, -5px);
+            /* Safari */
+            transform: translate(0, -5px);
 
-          .bookAuthors {
-            list-style-type: none;
-            margin: 0;
-            font-size: 0.6em;
-            text-align: right;
+            .thumbnail {
+              .bookImage {
+                img {
+                  box-shadow: 0 0 5px rgba(15, 20, 22, 0.75);
+                }
+              }
+            }
+
+            .overlay {
+              opacity: 1;
+            }
+          }
+
+          .thumbnail {
+            padding-top: 15px;
+            padding-bottom: 15px;
+
+            .header {
+              .bookTitle {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin-bottom: 0;
+              }
+            }
+
+            .bookImage {
+              min-height: 250px;
+              padding: 0 15px;
+
+              img {
+                margin-left: auto;
+                margin-right: auto;
+                box-shadow: 0 0 25px rgba(15, 20, 22, 0.5);
+                border-radius: 5px;
+                transition: all 0.25s ease-in;
+              }
+            }
+
+            .footer {
+              font-size: 0.8em;
+              line-height: 1.2em;
+
+              .publisher {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-weight: 700;
+              }
+
+              .publishedDate {
+                font-size: 0.6em;
+                color: #90A4AE;
+              }
+            }
+          }
+
+          .overlay {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+            background-color: rgba(15, 20, 22, 0.95);
+            transition: all 0.25s ease-in;
+            height: 100%;
+            color: white;
+
+            .description {
+              font-size: 0.8em;
+              font-weight: 500;
+            }
+
+            select {
+              width: 100%;
+              border-radius: 5px;
+              border: none;
+              padding: 0.5em 0.75em;
+              color: #37474F;
+              font-size: 0.6em;
+              font-weight: 700;
+            }
+
+            .extra {
+              position: absolute;
+              bottom: 15px;
+              width: 100%;
+
+              .bookAuthors {
+                list-style-type: none;
+                margin: 0;
+                font-size: 0.6em;
+                text-align: right;
+              }
+            }
           }
         }
       }
-    }
 
-    &.wantToRead {
-      .book {
-        background-color: #FFFDE7;
+      &.wantToRead {
+        .book {
+          background-color: #FFFDE7;
+        }
       }
-    }
 
-    &.read {
-      .book {
-        background-color: #ECEFF1;
+      &.read {
+        .book {
+          background-color: #ECEFF1;
 
-        .thumbnail {
-          .bookImage {
-            img {
-              -webkit-filter: grayscale(100%);
-              /* Safari 6.0 - 9.0 */
-              filter: grayscale(100%);
-              box-shadow: 0 0 5px rgba(15, 20, 22, 0.5);
+          .thumbnail {
+            .bookImage {
+              img {
+                -webkit-filter: grayscale(100%);
+                /* Safari 6.0 - 9.0 */
+                filter: grayscale(100%);
+                box-shadow: 0 0 5px rgba(15, 20, 22, 0.5);
+              }
             }
           }
         }
@@ -179,4 +244,3 @@ section {
     }
   }
 }
-// Transitions
