@@ -1,66 +1,55 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import escapeRegExp from 'escape-string-regexp';
 import BookShelf from './BookShelf';
 
 class SearchBooks extends Component {
-  state = {
-    searchQuery: ''
-  }
-
   static propTypes = {
     books: PropTypes.array.isRequired,
     styles: PropTypes.object.isRequired,
-    bookShelves: PropTypes.array.isRequired
+    bookShelves: PropTypes.array.isRequired,
+    onChangeBookShelf: PropTypes.func.isRequired,
+    searchQuery: PropTypes.string.isRequired
   }
 
-  updateQuery = query => {
-    this.setState({
-      searchQuery: query.trim()
-    });
+  updateQuery = event => {
+    const newQuery = event.target.value;
+    this.props.onUpdateQuery(newQuery);
   }
 
   render() {
-    const {books, styles, bookShelves, onChangeBookShelf} = this.props;
-    const {searchQuery} = this.state;
-
-    let searchedBooks;
-
-    if (searchQuery) {
-      const match = new RegExp(escapeRegExp(searchQuery), 'i');
-      searchedBooks = books.filter(book => match.test(book.title));
-    } else {
-      searchedBooks = books;
-    }
+    const {styles, bookShelves, onChangeBookShelf, searchQuery} = this.props;
+    let {searchedBooks} = this.props;
 
     return (
       <div id="searchBooks">
         <section className="search">
           <div className="container">
-            <input
-              className="searchBooks form-control"
-              type="text"
-              placeholder="Search Books"
-              value={searchQuery}
-              onChange={event => this.updateQuery(event.target.value)}
-              style={{opacity: styles.searchBooksInputOpacity}}
-            />
+            <div className="row">
+              <div className="col">
+                <input
+                  className="searchBooks form-control"
+                  type="text"
+                  placeholder="Search Books"
+                  value={searchQuery}
+                  onChange={this.updateQuery}
+                  style={{opacity: styles.searchBooksInputOpacity}}
+                />
+              </div>
+            </div>
           </div>
         </section>
 
         <section className="books">
           <div className="container">
-            {bookShelves.map((bookShelf, index) => (
-              <div className="bookShelfContainer" key={bookShelf} style={{opacity: styles.bookShelfOpacity, top: styles.bookShelfPositionTop, transitionDelay: `${index/2}s`}}>
-                <BookShelf
-                  bookShelves={bookShelves}
-                  booksOnShelf={searchedBooks.filter(book => book.shelf === bookShelf)}
-                  shelfTitle={bookShelf.replace(/([A-Z])/g, ' $1').toUpperCase()}
-                  shelfName={bookShelf}
-                  onChangeBookShelf={onChangeBookShelf}
-                />
-              </div>
-            ))}
+            <div className="bookShelfContainer" style={{opacity: styles.bookShelfOpacity, top: styles.bookShelfPositionTop}}>
+              <BookShelf
+                bookShelves={bookShelves}
+                booksOnShelf={searchedBooks}
+                shelfTitle={'SEARCHED BOOKS'}
+                shelfName={'searchedBooks'}
+                onChangeBookShelf={onChangeBookShelf}
+              />
+            </div>
           </div>
         </section>
       </div>

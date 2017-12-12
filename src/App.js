@@ -10,6 +10,8 @@ import SearchBooks from './SearchBooks';
 class App extends Component {
   state = {
     books: [],
+    searchQuery: '',
+    searchedBooks: [],
     styles: {
       bookShelfOpacity: '0',
       bookShelfPositionTop: '15px',
@@ -20,15 +22,14 @@ class App extends Component {
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      this.setState({
+      this.setState(state => ({
         books: books,
         styles: {
           bookShelfOpacity: '1',
           bookShelfPositionTop: '0px',
-          bookOpacity: '1',
           searchBooksInputOpacity: '1'
         }
-      });
+      }));
     });
 
     $(document).ready(_ => {
@@ -52,22 +53,39 @@ class App extends Component {
   changeShelf = (book, shelf) => {
     BooksAPI.update(book, shelf).then(_ => {
       BooksAPI.getAll().then(books => {
-        this.setState({
-          books: books,
-          styles: {
-            bookShelfOpacity: '1',
-            bookShelfPositionTop: '0px',
-            bookOpacity: '0',
-            searchBooksInputOpacity: '1'
-          }
-        });
+        this.setState(state => ({
+          books: books
+        }));
       })
     });
   }
 
-  render() {
-    const {books, styles} = this.state;
+  updateQuery = query => {
+    this.setState(state => ({
+      searchQuery: query
+    }));
 
+    if (query) {
+      BooksAPI.search(query).then(b => {
+        if (b.error) {
+          this.setState({
+            searchedBooks: []
+          });
+        } else {
+          this.setState({
+            searchedBooks: b
+          });
+        }
+      });
+    } else {
+      this.setState({
+        searchedBooks: []
+      });
+    }
+  }
+
+  render() {
+    const {books, searchQuery, searchedBooks, styles} = this.state;
     const bookShelves = ['currentlyReading', 'wantToRead', 'read'];
 
     return (
@@ -89,6 +107,9 @@ class App extends Component {
               styles={styles}
               bookShelves={bookShelves}
               onChangeBookShelf={(book, shelf) => this.changeShelf(book, shelf)}
+              searchQuery={searchQuery}
+              searchedBooks={searchedBooks}
+              onUpdateQuery={query => this.updateQuery(query)}
             />
           )}/>
         </div>

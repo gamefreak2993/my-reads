@@ -63,7 +63,7 @@ section {
   padding: 50px 0;
 }
 // Forms
-.searchBooks {
+.searchBooks, .btn {
   transition: all 0.25s ease-in;
 }
 // Books
@@ -78,7 +78,7 @@ section {
 
       .row:empty {
         &::after {
-          content: "No books found on this shelf!";
+          content: "No books found!";
           width: 100%;
           padding: 30px;
           background-color: white;

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import {faBook, faSearch} from '@fortawesome/fontawesome-free-solid';
+import {faBook} from '@fortawesome/fontawesome-free-solid';
 
 class Header extends Component {
   render() {
@@ -20,7 +20,7 @@ class Header extends Component {
               <Link
                 to='/search'
                 className='search'
-              ><FontAwesomeIcon icon={faSearch}/> Search</Link>
+              >Search</Link>
             </div>
           </div>
         </div>
