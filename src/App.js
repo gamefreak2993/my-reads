@@ -3,7 +3,6 @@ import {Route} from 'react-router-dom';
 import $ from 'jquery';
 import * as BooksAPI from './utils/BooksAPI';
 import Header from './Header';
-import Footer from './Footer';
 import CreateBooks from './CreateBooks';
 import SearchBooks from './SearchBooks';
 
@@ -21,15 +20,15 @@ class App extends Component {
   }
 
   componentDidMount() {
-    BooksAPI.getAll().then((books) => {
-      this.setState(state => ({
+    BooksAPI.getAll().then(books => {
+      this.setState({
         books: books,
         styles: {
           bookShelfOpacity: '1',
           bookShelfPositionTop: '0px',
           searchBooksInputOpacity: '1'
         }
-      }));
+      });
     });
 
     $(document).ready(_ => {
@@ -53,17 +52,17 @@ class App extends Component {
   changeShelf = (book, shelf) => {
     BooksAPI.update(book, shelf).then(_ => {
       BooksAPI.getAll().then(books => {
-        this.setState(state => ({
+        this.setState({
           books: books
-        }));
-      })
+        });
+      });
     });
   }
 
   updateQuery = query => {
-    this.setState(state => ({
+    this.setState({
       searchQuery: query
-    }));
+    });
 
     if (query) {
       BooksAPI.search(query).then(b => {
@@ -82,6 +81,13 @@ class App extends Component {
         searchedBooks: []
       });
     }
+  }
+
+  clearQuery = _ => {
+    this.setState({
+      searchQuery: '',
+      searchedBooks: []
+    });
   }
 
   render() {
@@ -106,15 +112,17 @@ class App extends Component {
               books={books}
               styles={styles}
               bookShelves={bookShelves}
-              onChangeBookShelf={(book, shelf) => this.changeShelf(book, shelf)}
+              onChangeBookShelf={(book, shelf) => {
+                this.changeShelf(book, shelf);
+                history.push('/');
+                this.clearQuery();
+              }}
               searchQuery={searchQuery}
               searchedBooks={searchedBooks}
               onUpdateQuery={query => this.updateQuery(query)}
             />
           )}/>
         </div>
-
-        <Footer/>
       </div>
     );
   }

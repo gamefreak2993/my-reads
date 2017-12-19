@@ -4,6 +4,7 @@ import Book from './Book';
 
 class BookShelf extends Component {
   static propTypes = {
+    originalBooks: PropTypes.array.isRequired,
     bookShelves: PropTypes.array.isRequired,
     booksOnShelf: PropTypes.array.isRequired,
     shelfTitle: PropTypes.string.isRequired,
@@ -12,7 +13,7 @@ class BookShelf extends Component {
   }
 
   render() {
-    const {bookShelves, booksOnShelf, shelfTitle, shelfName, onChangeBookShelf} = this.props;
+    const {originalBooks, bookShelves, booksOnShelf, shelfTitle, shelfName, onChangeBookShelf} = this.props;
 
     return (
       <div className={`bookShelf ${shelfName}`}>
@@ -21,6 +22,7 @@ class BookShelf extends Component {
           {booksOnShelf.map(book => (
               <Book
                 key={book.id}
+                originalBooks={originalBooks}
                 bookShelves={bookShelves}
                 bookOnShelf={book}
                 onChangeShelf={onChangeBookShelf}

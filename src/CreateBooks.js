@@ -19,6 +19,7 @@ class CreateBooks extends Component {
           {bookShelves.map((bookShelf, index) => (
             <div className="bookShelfContainer" key={bookShelf} style={{opacity: styles.bookShelfOpacity, top: styles.bookShelfPositionTop, transitionDelay: `${index/2}s`}}>
               <BookShelf
+                originalBooks={books}
                 bookShelves={bookShelves}
                 booksOnShelf={books.filter(book => book.shelf === bookShelf)}
                 shelfTitle={bookShelf.replace(/([A-Z])/g, ' $1').toUpperCase()}

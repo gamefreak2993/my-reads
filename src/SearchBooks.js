@@ -8,7 +8,9 @@ class SearchBooks extends Component {
     styles: PropTypes.object.isRequired,
     bookShelves: PropTypes.array.isRequired,
     onChangeBookShelf: PropTypes.func.isRequired,
-    searchQuery: PropTypes.string.isRequired
+    searchQuery: PropTypes.string.isRequired,
+    searchedBooks: PropTypes.array.isRequired,
+    onUpdateQuery: PropTypes.func.isRequired
   }
 
   updateQuery = event => {
@@ -17,8 +19,7 @@ class SearchBooks extends Component {
   }
 
   render() {
-    const {styles, bookShelves, onChangeBookShelf, searchQuery} = this.props;
-    let {searchedBooks} = this.props;
+    const {books, styles, bookShelves, onChangeBookShelf, searchQuery, searchedBooks} = this.props;
 
     return (
       <div id="searchBooks">
@@ -43,6 +44,7 @@ class SearchBooks extends Component {
           <div className="container">
             <div className="bookShelfContainer" style={{opacity: styles.bookShelfOpacity, top: styles.bookShelfPositionTop}}>
               <BookShelf
+                originalBooks={books}
                 bookShelves={bookShelves}
                 booksOnShelf={searchedBooks}
                 shelfTitle={'SEARCHED BOOKS'}

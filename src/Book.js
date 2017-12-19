@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 class Book extends Component {
-
   static propTypes = {
+    originalBooks: PropTypes.array.isRequired,
     bookShelves: PropTypes.array.isRequired,
     bookOnShelf: PropTypes.object.isRequired,
     onChangeShelf: PropTypes.func.isRequired
@@ -15,7 +15,8 @@ class Book extends Component {
   }
 
   render() {
-    const {bookShelves, bookOnShelf} = this.props;
+    const {originalBooks, bookShelves, bookOnShelf} = this.props;
+    let searchedBookShelf = 'none';
 
     // Truncate for bookDescription
     String.prototype.truncate = String.prototype.truncate || function(n) {
@@ -23,6 +24,12 @@ class Book extends Component {
         ? this.substr(0, n - 1) + '...'
         : this;
     };
+
+    originalBooks.map(originalBook => {
+      if (originalBook.id === bookOnShelf.id) {
+        searchedBookShelf = originalBook.shelf;
+      }
+    });
 
     return (
       <div className="col-12 col-sm-6 col-md-4 col-lg-3 bookContainer">
@@ -47,8 +54,8 @@ class Book extends Component {
             </div>
 
             <select onChange={this.handleChange}>
-              <option value={bookOnShelf.shelf ? bookOnShelf.shelf : 'none'}>{bookOnShelf.shelf ? bookOnShelf.shelf.replace(/([A-Z])/g, ' $1').toUpperCase() : 'NONE'}</option>
-              {bookShelves.filter(shelf => shelf !== bookOnShelf.shelf).map(shelf => (<option key={shelf} value={shelf}>{shelf.replace(/([A-Z])/g, ' $1').toUpperCase()}</option>))}
+              <option value={bookOnShelf.shelf ? bookOnShelf.shelf : searchedBookShelf}>{bookOnShelf.shelf ? bookOnShelf.shelf.replace(/([A-Z])/g, ' $1').toUpperCase() : searchedBookShelf.replace(/([A-Z])/g, ' $1').toUpperCase()}</option>
+              {bookShelves.filter(shelf => (shelf !== bookOnShelf.shelf) && (shelf !== searchedBookShelf)).map(shelf => (<option key={shelf} value={shelf}>{shelf.replace(/([A-Z])/g, ' $1').toUpperCase()}</option>))}
             </select>
 
             <div className="extra row">
