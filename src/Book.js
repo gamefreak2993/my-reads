@@ -53,7 +53,7 @@ class Book extends Component {
               <p className="col">{bookOnShelf.description ? bookOnShelf.description.truncate(250) : 'No description provided.'}</p>
             </div>
 
-            <h6 className="shelfLabel">Change Shelf</h6>
+            <h6 className="shelfLabel">Assigned Shelf</h6>
 
             <select onChange={this.handleChange}>
               <option value={bookOnShelf.shelf ? bookOnShelf.shelf : searchedBookShelf}>{bookOnShelf.shelf ? bookOnShelf.shelf.replace(/([A-Z])/g, ' $1').toUpperCase() : searchedBookShelf.replace(/([A-Z])/g, ' $1').toUpperCase()}</option>
