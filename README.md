@@ -8,4 +8,4 @@ In your terminal, `git clone https://github.com/gamefreak2993/my-reads.git` in y
 `cd my-reads` and `npm install` to install all the project dependencies.
 `npm start` will compile scss and js, will watch for scss changes and will start the server.
 ## License
-My Reads is Copyright (c) 2017 Mihai Vărșăndan. View terms in the [LICENSE](https://github.com/gamefreak2993/my-reads/blob/master/LICENSE.txt) file.
+My Reads is Copyright (c) 2017 Mihai Vărșăndan. View terms in the [**LICENSE**](https://github.com/gamefreak2993/my-reads/blob/master/LICENSE.txt) file.
