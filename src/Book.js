@@ -17,18 +17,15 @@ class Book extends Component {
   render() {
     const {originalBooks, bookShelves, bookOnShelf} = this.props;
     let searchedBookShelf = 'none';
-
     // Truncate for bookDescription
-    String.prototype.truncate = String.prototype.truncate || function(n) {
-      return (this.length > n)
-        ? this.substr(0, n - 1) + '...'
-        : this;
-    };
-
-    originalBooks.map(originalBook => {
-      if (originalBook.id === bookOnShelf.id) {
-        searchedBookShelf = originalBook.shelf;
-      }
+    const truncate = (text, length) => {
+      return (text.length > length)
+        ? text.substr(0, length - 1) + '...'
+        : text;
+    }
+    // If the searched book is already assigned a shelf on the main page, assign it on the search page as well.
+    originalBooks.filter(originalBook => originalBook.id === bookOnShelf.id).map(originalBook => {
+      searchedBookShelf = originalBook.shelf;
     });
 
     return (
@@ -50,7 +47,7 @@ class Book extends Component {
           </div>
           <div className="overlay container">
             <div className="description row">
-              <p className="col">{bookOnShelf.description ? bookOnShelf.description.truncate(250) : 'No description provided.'}</p>
+              <p className="col">{bookOnShelf.description ? truncate(bookOnShelf.description, 250) : 'No description provided.'}</p>
             </div>
 
             <h6 className="shelfLabel">Assigned Shelf</h6>
