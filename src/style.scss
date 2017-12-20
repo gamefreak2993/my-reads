@@ -73,19 +73,14 @@ section {
     transition: all 0.75s ease-in;
 
     .bookShelf {
-      margin-bottom: 100px;
-      box-shadow: 0 15px 15px -15px rgba(15, 20, 22, 0.5);
+      margin-bottom: 50px;
+      box-shadow: 0 100px 100px -100px rgba(15, 20, 22, 0.5);
 
       .row:empty {
         &::after {
           content: "No books found!";
           width: 100%;
           padding: 30px;
-          background-color: white;
-          box-shadow: 0 0 5px rgba(15, 20, 22, 0.25);
-          border-radius: 5px;
-          margin: 0 15px;
-          margin-bottom: 30px;
           color: #78909C;
           text-align: center;
           font-size: 0.8em;
@@ -110,7 +105,7 @@ section {
           transition: all 0.25s ease-in;
 
           &:hover {
-            box-shadow: 0 0 25px rgba(15, 20, 22, 0.75);
+            box-shadow: 0 5px 15px rgba(15, 20, 22, 0.75);
             -ms-transform: translate(0, -5px);
             /* IE 9 */
             -webkit-transform: translate(0, -5px);
