@@ -5,7 +5,9 @@ My Reads is a book tracking application created as a project part of the React n
 You'll need to have [**Git**](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [**Node.js**](https://nodejs.org/en/) installed.
 ### Getting Started
 In your terminal, `git clone https://github.com/gamefreak2993/my-reads.git` in your directory of choice.
+
 `cd my-reads` and `npm install` to install all the project dependencies.
+
 `npm start` will compile scss and js, will watch for scss changes and will start the server.
 ## License
 My Reads is Copyright (c) 2017 Mihai Vărșăndan. View terms in the [**LICENSE**](https://github.com/gamefreak2993/my-reads/blob/master/LICENSE.txt) file.
