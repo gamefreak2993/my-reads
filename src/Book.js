@@ -26,6 +26,7 @@ class Book extends Component {
     // If the searched book is already assigned a shelf on the main page, assign it on the search page as well.
     originalBooks.filter(originalBook => originalBook.id === bookOnShelf.id).map(originalBook => {
       searchedBookShelf = originalBook.shelf;
+      return null;
     });
 
     return (
