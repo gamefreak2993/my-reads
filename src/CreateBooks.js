@@ -17,7 +17,7 @@ class CreateBooks extends Component {
       <section className="books">
         <div className="container">
           {bookShelves.map((bookShelf, index) => (
-            <div className="bookShelfContainer" key={bookShelf} style={{opacity: styles.bookShelfOpacity, top: styles.bookShelfPositionTop, transitionDelay: `${index/2}s`}}>
+            <div className="book-shelf-container" key={bookShelf} style={{opacity: styles.bookShelfOpacity, top: styles.bookShelfPositionTop, transitionDelay: `${index/2}s`}}>
               <BookShelf
                 originalBooks={books}
                 bookShelves={bookShelves}

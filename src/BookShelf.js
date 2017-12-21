@@ -16,8 +16,8 @@ class BookShelf extends Component {
     const {originalBooks, bookShelves, booksOnShelf, shelfTitle, shelfName, onChangeBookShelf} = this.props;
 
     return (
-      <div className={`bookShelf ${shelfName}`}>
-        <h4 className="bookShelfTitle">{shelfTitle}</h4>
+      <div className={`book-shelf ${shelfName}`}>
+        <h4 className="book-shelf-title">{shelfTitle}</h4>
         <div className="row">
           {booksOnShelf.map(book => (
               <Book

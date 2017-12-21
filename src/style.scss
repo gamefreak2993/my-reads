@@ -63,16 +63,16 @@ section {
   padding: 50px 0;
 }
 // Forms
-.searchBooks, .btn {
+.search-books, .btn {
   transition: all 0.25s ease-in;
 }
 // Books
 .books {
-  .bookShelfContainer {
+  .book-shelf-container {
     position: relative;
     transition: all 0.75s ease-in;
 
-    .bookShelf {
+    .book-shelf {
       margin-bottom: 50px;
       box-shadow: 0 100px 100px -100px rgba(15, 20, 22, 0.5);
 
@@ -88,11 +88,11 @@ section {
         }
       }
 
-      .bookShelfTitle {
+      .book-shelf-title {
         margin-bottom: 15px;
       }
 
-      .bookContainer {
+      .book-container {
         transition: all 0.25s ease-in;
 
         .book {
@@ -113,7 +113,7 @@ section {
             transform: translate(0, -5px);
 
             .thumbnail {
-              .bookImage {
+              .book-image {
                 img {
                   box-shadow: 0 0 5px rgba(15, 20, 22, 0.75);
                 }
@@ -130,7 +130,7 @@ section {
             padding-bottom: 15px;
 
             .header {
-              .bookTitle {
+              .book-title {
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -138,7 +138,7 @@ section {
               }
             }
 
-            .bookImage {
+            .book-image {
               min-height: 250px;
               padding: 0 15px;
 
@@ -162,7 +162,7 @@ section {
                 font-weight: 700;
               }
 
-              .publishedDate {
+              .published-date {
                 font-size: 0.6em;
                 color: #90a4ae;
               }
@@ -188,7 +188,7 @@ section {
               font-weight: 500;
             }
 
-            .shelfLabel {
+            .shelf-label {
               color: white;
               margin-top: 20px;
               margin-bottom: 5px;
@@ -209,7 +209,7 @@ section {
               bottom: 15px;
               width: 100%;
 
-              .bookAuthors {
+              .book-authors {
                 list-style-type: none;
                 margin: 0;
                 font-size: 0.6em;
@@ -231,7 +231,7 @@ section {
           background-color: #eceff1;
 
           .thumbnail {
-            .bookImage {
+            .book-image {
               img {
                 -webkit-filter: grayscale(100%);
                 /* Safari 6.0 - 9.0 */

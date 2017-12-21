@@ -22,13 +22,13 @@ class SearchBooks extends Component {
     const {books, styles, bookShelves, onChangeBookShelf, searchQuery, searchedBooks} = this.props;
 
     return (
-      <div id="searchBooks">
+      <div id="search-books">
         <section className="search">
           <div className="container">
             <div className="row">
               <div className="col">
                 <input
-                  className="searchBooks form-control"
+                  className="search-books form-control"
                   type="text"
                   placeholder="Search Books"
                   value={searchQuery}
@@ -42,7 +42,7 @@ class SearchBooks extends Component {
 
         <section className="books">
           <div className="container">
-            <div className="bookShelfContainer" style={{opacity: styles.bookShelfOpacity, top: styles.bookShelfPositionTop}}>
+            <div className="book-shelf-container" style={{opacity: styles.bookShelfOpacity, top: styles.bookShelfPositionTop}}>
               <BookShelf
                 originalBooks={books}
                 bookShelves={bookShelves}
